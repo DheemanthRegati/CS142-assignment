@@ -77,20 +77,13 @@ void linked_list::Delete (int d){
         tail = i;
     }
 
-/*  int c=1;
-    while(c<(d-2)){
-        tmp = tmp->next;
-        c++;
-    }
-    tmp->next=tail;
-    tail->next = NULL;
-    }
-    */
 }
 
 int main(){
     linked_list ll1;
     ll1.insert(1);
+    ll1.insert(2);
+    ll1.insert(3);
     int y=ll1.countItems();
     cout<<y<<endl;
     ll1.display();
