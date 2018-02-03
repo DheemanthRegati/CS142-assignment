@@ -50,34 +50,36 @@ class queue{
     public:
     void enqueue(int d){
         s1.push(d);
+        cout<<"Pushed "<<d<<" in\n";
     }
    void dequeue(){
-       if((s1.top)->data == NULL){
-           cout<<"Nothing in queue";
+       if((s1.top)== NULL){
+           cout<<"Nothing in queue to remove.";
        }
        else{
-           while((s1.top->data)!=NULL){
+           while((s1.top)!=NULL){
                s2.push(s1.top->data);
                s1.pop();
            }
+           cout<<s2.top->data<<" is dequeued.\n";
            s2.pop();
-           while((s2.top->data)!=NULL){
+           while((s2.top)!=NULL){
                s1.push(s2.top->data);
                s2.pop();
            }
        }
    }
    void displayQueue(){
-       if(s1.top->data==NULL){
+       if(s1.top==NULL){
            cout<<"Nothing in queue";
        }
        else{
-           while((s1.top->data)!=NULL){
+           while((s1.top)!=NULL){
                s2.push(s1.top->data);
                s1.pop();
            }
-           s2.pop();
-           while((s2.top->data)!=NULL){
+           cout<<"lalala\n";
+           while((s2.top)!=NULL){
                cout<<s2.top->data;
                s1.push(s2.top->data);
                s2.pop();
