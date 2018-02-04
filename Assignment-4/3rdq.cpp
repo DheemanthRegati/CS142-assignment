@@ -4,12 +4,61 @@ using namespace std;
 
 // Node of a linked list. 
 
+class snode{
+    public:
+    char alph;
+    snode *next;
+};
+
 class node{
 public:
 	int pho;
     string name,desc;
 	node *next; // Pointer to next node
 };
+
+class Stack{
+    public:
+	snode *top;
+
+public:
+	Stack(){
+		top =NULL;
+	}
+	void push(char a){
+		snode *temp = new snode;
+		temp->alph = a;
+		temp->next = NULL;
+		if(top!=NULL){
+			temp->next = top;
+		}
+		top = temp;
+	}
+	void pop(){
+        if(top == NULL){
+            cout<<"Nothing to pop\n";
+        }
+        else{
+            top = top->next;
+        }
+    }   
+};
+
+// Function, not in a class
+bool checkpal(string n){
+    Stack b;
+    for(int i=0;i < n.length();i++){
+        b.push(n[i]);
+    }
+    for(int i=0;i < n.length();i++){
+        if(n[i]!=b.top->alph){
+            cout<<"not palindrome";
+            return 0;
+        }
+        b.pop();
+    }
+    return 1;
+}
 
 class queue{
 	node *head;
@@ -26,13 +75,18 @@ public:
         temp->name = nam;
         temp->desc = des;
 		temp->next = NULL;
-        if (head!=NULL){
-            tail->next = temp;
+        if(checkpal(nam)==1){
+            temp->next = head;
+            head = temp;
         }
-        else{
-        head = temp;
+        else {
+            if (head != NULL)
+                tail->next = temp;
+            else
+                head = temp;
+            tail = temp;
         }
-        tail = temp;
+        show();
 	}
 	void dequeue(){
         if(head == NULL){
@@ -54,6 +108,7 @@ public:
     
 	}
 };
+
 
 int main(){
  queue s;
