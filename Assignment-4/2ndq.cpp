@@ -78,7 +78,6 @@ class queue{
                s2.push(s1.top->data);
                s1.pop();
            }
-           cout<<"lalala\n";
            while((s2.top)!=NULL){
                cout<<s2.top->data;
                s1.push(s2.top->data);
