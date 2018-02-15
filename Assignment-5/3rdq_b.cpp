@@ -1,7 +1,5 @@
 #include <iostream>
 using namespace std;
-
-
 class node
 {
 public:
@@ -22,9 +20,7 @@ linked_list(){
     head = NULL;
     tail = NULL;
 }
-
 void insert (int data){//inserting nodes
-    //cout<<"test n"<<endl;
     node *tmp = new node;
     tmp->data = data;
     tmp->next = NULL;
@@ -36,12 +32,9 @@ void insert (int data){//inserting nodes
         tail->next = tmp;
         tail = tail->next;
     }
-cout << "Node with data " << data << " successfully added."<<endl;
+cout << "Node with data " << data << " successfully added." << endl;
 }
-
 void display (void){//displaying data
-
-    cout << "\nDISPLAYING\n";
     node *tmp = head; 
     while(tmp !=NULL){ 
         cout<<(tmp->data)<<" -> "; 
@@ -49,6 +42,22 @@ void display (void){//displaying data
          } 
          cout<<"NULL\n";
           }
+};
+
+class bubblesort{
+    public:
+   void sort(node *h){
+       
+      for(node*i = h;i!=NULL;){
+           for(node*j = h;j->next!=NULL;){
+               if((j->data) > j->next->data){
+                   int t = j->next->data;
+                    j->next->data = j->data;
+                    j->data = t;
+               }j=j->next;
+           }i=i->next;
+       }return;
+   }
 };
 class quicksort{
     public:
@@ -78,15 +87,15 @@ class quicksort{
     return (i->next);
 }
 
-    void sort(node* head,node* tail){
+    void qsort(node* head,node* tail){
        
         if(head!=tail){
            
             node *p =part(head,tail);
            
-            sort(head,p);
+            qsort(head,p);
            
-            sort((p->next),tail);
+            qsort((p->next),tail);
         }
     }
 };
@@ -94,20 +103,24 @@ int main(){
     int x;
     cout<<"Enter size";
     cin>>x;
-    quicksort c;
-    int i=0;
     linked_list ll1;
+    clock_t bs,be,qs,qe;
+    bubblesort c;
+    quicksort d;
+    int i=0;
     while(i<x){
         ll1.insert(rand() % x);
         i++;
     }
-    /*ll1.insert(4);
-    ll1.insert(3);
-    ll1.insert(2);
-    ll1.insert(1);*/
-    cout<<"input list is ";
-    ll1.display();
-    c.sort(ll1.head,ll1.tail);
-    ll1.display();
+    bs = clock();
+    c.sort(ll1.head);
+    be = clock();
+    double bt =(double) (be-bs)/CLOCKS_PER_SEC;
+    qs = clock();
+    d.qsort(ll1.head,ll1.tail);
+    qe = clock();
+    double qt = (double)(qe-qs)/CLOCKS_PER_SEC;
+    cout<<" bt is "<<bt<<endl;
+    cout<<"qt is "<<qt<<endl; 
     return 0;
 }
