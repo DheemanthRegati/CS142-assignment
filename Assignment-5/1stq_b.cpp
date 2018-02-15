@@ -5,12 +5,10 @@ class node
 public:
 int data;
 node *next;
-node *prev;
 
 node() { //constructor
     data = 0;
     next = nullptr;
-    prev = nullptr;
 }
 };
 class linked_list
@@ -26,14 +24,12 @@ void insert (int data){//inserting nodes
     node *tmp = new node;
     tmp->data = data;
     tmp->next = NULL;
-    tmp->prev = NULL;
     if(head == NULL){
         head = tmp;
         tail = tmp;
     }
     else{
         tail->next = tmp;
-        tmp->prev = tail;
         tail = tail->next;
     }
 cout << "Node with data " << data << " successfully added." << endl;
