@@ -20,11 +20,17 @@ int bsearch(int arr[],int l,int h,int k){
 }
 
 int main(){
-    int b[5]={1,2,3,4,5};
+    int x;
+    cout<<"Enter length";
+    cin>>x;
+    int b[x];
+    for(int i=0;i<x;i++){
+        b[i]= i;
+    }
     cout<<"choose key";
     int key;
     cin>>key;
-    int ans=bsearch(b,0,4,key);
+    int ans=bsearch(b,0,x-1,key);
     cout<<ans;
     return 0;
 }
