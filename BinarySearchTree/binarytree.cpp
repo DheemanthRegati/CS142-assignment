@@ -75,15 +75,27 @@ class BST{
 
 int main(){
   BST bst;
-  bst.insert(root,10);
-  bst.insert(root,7);
-  bst.insert(root,3);
-  bst.insert(root,5);
-  bst.insert(root,11);
-  bst.display(root);
-  cout << endl;
-  bst.bsearch(root,1);
-  bst.bsearch(root,7);
-
-return 0;}
-
+  int a;
+  while(true){//user interface
+        cout<<"insert-1\n display -2\n search-3\n exit-4\n";
+        cin>>a;
+        if(a==1){
+            int b;
+            cout<<"data?";
+            cin>>b;
+            bst.insert(root,b);
+        }
+        else if(a==2){
+            bst.display(root);
+        }
+        else if(a==3){
+            int b;
+            cout<<"element to search?";
+            cin>>b;
+            bst.bsearch(root,b);
+        }
+        else if(a==4){
+            return 0;
+            }
+        }
+}
