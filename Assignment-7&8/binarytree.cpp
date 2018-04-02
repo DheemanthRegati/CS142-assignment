@@ -83,6 +83,7 @@ class BST{
       else{
         temp->parent->right = NULL;
       }
+      return;
     }
     else if(temp->left==NULL && temp->right!=NULL){
       if(temp->parent->left == temp){
@@ -93,6 +94,7 @@ class BST{
         temp->right->parent = temp->parent;
         temp->parent->right = temp->right;
       }
+      return;
     }
     else if(temp->left!=NULL && temp->right==NULL){
       if(temp->parent->left == temp){
@@ -103,6 +105,7 @@ class BST{
         temp->left->parent = temp->parent;
         temp->parent->right = temp->left;
       }
+      return;
     }
     else{
       node *p = temp->left;
@@ -116,6 +119,7 @@ class BST{
         p->left->parent = p->parent;
       }
       p->parent->right=p->left;
+      return;
     }
   }
 
