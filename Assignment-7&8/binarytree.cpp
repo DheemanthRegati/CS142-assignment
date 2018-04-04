@@ -62,29 +62,37 @@ class BST{
       if (root->data == val){
         cout << val <<" present!" << endl;
         return root;
-      }
+      }}
       if (curr != NULL){
         if (val > curr->data){
-          bsearch(curr->right,val);}
-        if (val < curr->data) {
-          bsearch(curr->left,val);}
-        if (val == curr->data){
-          cout << val << " present!"<< endl;}
+          curr = bsearch(curr->right,val);}
+        else if (val < curr->data) {
+          curr = bsearch(curr->left,val);}
+        else if (val == curr->data){
+          cout << val << " present!"<< endl;
+	}
       }
       else{
-        cout << val << " absent!" << endl;}
-    }
-    return curr;
-  }
+        cout << val << " absent!" << endl;
+	return NULL;}
+	return curr;}
   void deleteN(int key){
     node* temp = bsearch(root,key);
-    if(temp->left==NULL && temp->right==NULL)
-        if(temp->parent->left == temp) // YOU'RE NOT HANDLING THE CASE, WHEN TEMP == ROOT -- ROOT IS AN ORPHAN!!!!
-            temp->parent->left = NULL;
-        else
-            temp->parent->right = NULL;
-
-    else if(temp->left==NULL && temp->right!=NULL)
+    if(temp==NULL){cout<<"no such element";
+	return;}
+    if(temp->left==NULL && temp->right==NULL){
+	if(temp==root){
+	    root=NULL;
+	    return;}
+        if(temp->parent->left == temp){ //
+            temp->parent->left = NULL;}
+        else{
+            temp->parent->right = NULL;}
+	}
+    else if(temp->left==NULL && temp->right!=NULL){
+	if(temp==root){
+	    root=root->right;
+	    return;}
         if(temp->parent->left == temp) {
             temp->right->parent = temp->parent;
             temp->parent->left = temp->right;
@@ -93,8 +101,11 @@ class BST{
             temp->right->parent = temp->parent;
             temp->parent->right = temp->right;
         }
-
-    else if(temp->left!=NULL && temp->right==NULL)
+    }
+    else if(temp->left!=NULL && temp->right==NULL){
+	if(temp==root){
+	    root=root->left;
+	    return;}
         if(temp->parent->left == temp) {
             temp->left->parent = temp->parent;
             temp->parent->left = temp->left;
@@ -103,8 +114,8 @@ class BST{
             temp->left->parent = temp->parent;
             temp->parent->right = temp->left;
         }
-
-    else {
+    }
+   else {
         node *p = temp->left;
         while(p->right != NULL){
             p=p->right;
@@ -114,8 +125,15 @@ class BST{
         temp->data= t;
         if(p->left != NULL){
             p->left->parent = p->parent;
-        }
-        p->parent->right=p->left;
+            p->parent->right=p->left;        
+	}
+	//  Special case for leaf
+	else{
+	    if(p->parent->left==p){
+	        p->parent->left=NULL;}
+	    else{
+		p->parent->right=NULL;}
+	}
         return;
     }
   }
@@ -144,6 +162,8 @@ int main(){
             cin>>b;
             node*p = new node;
             p = bst.bsearch(root,b);
+	    if(p==NULL){
+		cout<<"NULL";}
         }
         else if(a==4){
           int b;
