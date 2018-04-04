@@ -60,7 +60,9 @@ class BST{
   node* bsearch(node *curr,int val){      
     if (root != NULL){
       if (root->data == val){
-        cout << val <<" present!" << endl;}
+        cout << val <<" present!" << endl;
+        return root;
+      }
       if (curr != NULL){
         if (val > curr->data){
           bsearch(curr->right,val);}
@@ -76,50 +78,45 @@ class BST{
   }
   void deleteN(int key){
     node* temp = bsearch(root,key);
-    if(temp->left==NULL && temp->right==NULL){
-      if(temp->parent->left == temp){
-        temp->parent->left = NULL;
-      }
-      else{
-        temp->parent->right = NULL;
-      }
-      return;
-    }
-    else if(temp->left==NULL && temp->right!=NULL){
-      if(temp->parent->left == temp){
-        temp->right->parent = temp->parent;
-        temp->parent->left = temp->right;
-      }
-      else{
-        temp->right->parent = temp->parent;
-        temp->parent->right = temp->right;
-      }
-      return;
-    }
-    else if(temp->left!=NULL && temp->right==NULL){
-      if(temp->parent->left == temp){
-        temp->left->parent = temp->parent;
-        temp->parent->left = temp->left;
-      }
-      else{
-        temp->left->parent = temp->parent;
-        temp->parent->right = temp->left;
-      }
-      return;
-    }
-    else{
-      node *p = temp->left;
-      while(p->right != NULL){
-        p=p->right;
-      }
-      int t = p->data;
-      p->data = temp->data;
-      temp->data= t;
-      if(p->left != NULL){
-        p->left->parent = p->parent;
-      }
-      p->parent->right=p->left;
-      return;
+    if(temp->left==NULL && temp->right==NULL)
+        if(temp->parent->left == temp) // YOU'RE NOT HANDLING THE CASE, WHEN TEMP == ROOT -- ROOT IS AN ORPHAN!!!!
+            temp->parent->left = NULL;
+        else
+            temp->parent->right = NULL;
+
+    else if(temp->left==NULL && temp->right!=NULL)
+        if(temp->parent->left == temp) {
+            temp->right->parent = temp->parent;
+            temp->parent->left = temp->right;
+        }
+        else {
+            temp->right->parent = temp->parent;
+            temp->parent->right = temp->right;
+        }
+
+    else if(temp->left!=NULL && temp->right==NULL)
+        if(temp->parent->left == temp) {
+            temp->left->parent = temp->parent;
+            temp->parent->left = temp->left;
+        }
+        else {
+            temp->left->parent = temp->parent;
+            temp->parent->right = temp->left;
+        }
+
+    else {
+        node *p = temp->left;
+        while(p->right != NULL){
+            p=p->right;
+        }
+        int t = p->data;
+        p->data = temp->data;
+        temp->data= t;
+        if(p->left != NULL){
+            p->left->parent = p->parent;
+        }
+        p->parent->right=p->left;
+        return;
     }
   }
 
