@@ -137,13 +137,27 @@ class BST{
         return;
     }
   }
-  int c;
+  int c=0;
   void count(node* temp){
       if (temp!=NULL) {
           count(temp->left);
           c++;       
           count(temp->right);
       }
+  }
+  int d=0;
+    int rangedisplay(node *curr,int l,int m){        
+    if (root == NULL){
+      cout << "tree is empty"<<endl; 
+    }
+    if(curr != NULL){
+      rangedisplay(curr->left,l,m);
+      if(curr->data>(l-1)&&curr->data<(m+1)){
+          cout << curr->data << " ";
+          d++;
+      }
+      rangedisplay(curr->right,l,m);}
+
   }
 
 };
@@ -153,7 +167,7 @@ int main(){
   BST bst;
   int a;
   while(true){//user interface
-        cout<<"insert-1\n display -2\n search-3\n delete-4\n count-5\n exit\n";
+        cout<<"insert-1\n display -2\n search-3\n delete-4\n count-5\n rangesearch-6\n exit\n";
         cin>>a;
         if(a==1){
             int b;
@@ -183,6 +197,14 @@ int main(){
             bst.count(root);
             cout << "c = " << bst.c;
             }
+        else if(a==6){
+            int f,g;
+            cout<<"enter minimum of range";
+            cin>>f;
+            cout<<"enter maximum of range";
+            cin>>g;
+            bst.rangedisplay(root,f,g);
+        }
         else{
             return 0;
         }
