@@ -137,6 +137,14 @@ class BST{
         return;
     }
   }
+  int c;
+  void count(node* temp){
+      if (temp!=NULL) {
+          count(temp->left);
+          c++;       
+          count(temp->right);
+      }
+  }
 
 };
 
@@ -145,7 +153,7 @@ int main(){
   BST bst;
   int a;
   while(true){//user interface
-        cout<<"insert-1\n display -2\n search-3\n delete-4\n exit-5\n";
+        cout<<"insert-1\n display -2\n search-3\n delete-4\n count-5\n exit\n";
         cin>>a;
         if(a==1){
             int b;
@@ -172,7 +180,11 @@ int main(){
           bst.deleteN(b);
         }
         else if(a==5){
-            return 0;
+            bst.count(root);
+            cout << "c = " << bst.c;
             }
+        else{
+            return 0;
+        }
         }
 }
