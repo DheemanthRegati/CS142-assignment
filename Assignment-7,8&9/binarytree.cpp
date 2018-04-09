@@ -146,7 +146,7 @@ class BST{
       }
   }
   int d=0;
-    int rangedisplay(node *curr,int l,int m){        
+    void rangedisplay(node *curr,int l,int m){        
     if (root == NULL){
       cout << "tree is empty"<<endl; 
     }
@@ -157,7 +157,6 @@ class BST{
           d++;
       }
       rangedisplay(curr->right,l,m);}
-
   }
 
 };
@@ -204,6 +203,7 @@ int main(){
             cout<<"enter maximum of range";
             cin>>g;
             bst.rangedisplay(root,f,g);
+            cout<<"total elements in range "<<bst.d;
         }
         else{
             return 0;
