@@ -195,6 +195,7 @@ int main(){
         else if(a==5){
             bst.count(root);
             cout << "c = " << bst.c;
+	    bst.c=0;
             }
         else if(a==6){
             int f,g;
@@ -204,6 +205,7 @@ int main(){
             cin>>g;
             bst.rangedisplay(root,f,g);
             cout<<"total elements in range "<<bst.d;
+	    bst.d=0;
         }
         else{
             return 0;
