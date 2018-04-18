@@ -32,12 +32,12 @@ void insert(int data)
 }
 
 void deleter(){
-	heap[0] = heap[l];
+	heap[0] = heap[l-1];
 	l--;
 	int i = 0;
-	while ((2 * i) + 1 <= l)
+	while ((2 * i) + 1 <= (l-1))
 	{
-		if ((2 * i) + 2 > l && heap[i] < heap[(2 * i) + 1])
+		if ((2 * i) + 2 > (l-1) && heap[i] < heap[(2 * i) + 1])
 		{
 			int t = heap[i];
 			heap[i] = heap[(2 * i) + 1];
@@ -82,11 +82,10 @@ void deleter(){
 			deleter();
 			deleter();
 			deleter();
-			deleter();
 			cout<<endl;
 			for (int j = 0; j < l; j++)
 			{
 				cout << heap[j] << " ";
 			}
 			return 0;
-		}
+}
